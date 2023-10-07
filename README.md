@@ -5,7 +5,7 @@ Desafio proposto pela live na qual, houveram estudos da linguagem GO e a impleme
 
 **Install Go >= [1.21.2](https://go.dev/doc/install)**
 
-**Install PostMan >= [Download](https://www.postman.com/downloads/)**
+**Install Postman >= [Download](https://www.postman.com/downloads/)**
 
 ## Usage
 
