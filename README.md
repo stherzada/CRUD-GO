@@ -1,4 +1,4 @@
-# CRUD---GO
+# CRUD-GO
 Desafio proposto pela live na qual, houveram estudos da linguagem GO e a implementação de um pequeno CRUD sem integração com o banco de dados, tudo de forma local.
 
 ## Requirement
