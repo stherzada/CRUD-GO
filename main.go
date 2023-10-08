@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
@@ -14,7 +15,7 @@ type user struct {
 
 type FiberHandler func(c *fiber.Ctx) error
 
-var colectionDate []user
+var collectionDate []user
 
 func main() {
 	app := fiber.New()
@@ -49,7 +50,12 @@ func getHandlerUser() FiberHandler {
 			return err
 		}
 
-		user := getUser(inUser.ID)
+		user, err := getUser(inUser.ID)
+
+		if err != nil {
+			return nil
+		}
+
 		userMarshalled, err := json.Marshal(user)
 		if err != nil {
 			return err
@@ -66,7 +72,12 @@ func deleteHandler() FiberHandler {
 			return err
 		}
 
-		deleteUser(inUser.ID)
+		err = deleteUser(inUser.ID)
+
+		if err != nil {
+			return err
+		}
+
 		return nil
 	}
 }
@@ -99,38 +110,40 @@ func updateHandler() FiberHandler {
 }
 
 func updateUser(inUser user) user {
-	for i, x := range colectionDate {
+	for i, x := range collectionDate {
 		if inUser.ID == x.ID {
-			colectionDate[i].Name = inUser.Name
-			return colectionDate[i]
+			collectionDate[i].Name = inUser.Name
+			return collectionDate[i]
 		}
 	}
 	return user{}
 }
 
 func createUser(name string) {
-	colectionDate = append(colectionDate, user{uuid.New(), name})
+	collectionDate = append(collectionDate, user{uuid.New(), name})
 }
 
-func deleteUser(id uuid.UUID) {
-	for i, x := range colectionDate {
+func deleteUser(id uuid.UUID) error {
+	for i, x := range collectionDate {
 		if id == x.ID {
-			colectionDate = append(colectionDate[:i], colectionDate[i+1:]...)
-
+			collectionDate = append(collectionDate[:i], collectionDate[i+1:]...)
+			return nil
 		}
 	}
+
+	return errors.New("ID not found")
 }
 
 // não consigo pesquisar usuarios que não existem
-func getUser(id uuid.UUID) user {
-	for _, v := range colectionDate {
+func getUser(id uuid.UUID) (user, error) {
+	for _, v := range collectionDate {
 		if id == v.ID {
-			return v
+			return v, nil
 		}
 	}
-	return user{}
+	return user{}, errors.New("ID not found")
 }
 
 func getUsers() []user {
-	return colectionDate
+	return collectionDate
 }
