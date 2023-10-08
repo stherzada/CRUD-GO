@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=crud-go  
+      - POSTGRES_PASSWORD=crud-go
+      - POSTGRES_DB=crud-go
+      - DATABASE_HOST=postgres 
+    ports:
+      - '5432:5432'
+    networks:
+      - crud-go-network
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: crud-go@admin.com
+      PGADMIN_DEFAULT_PASSWORD: crud-go
+    depends_on:
+      - postgres
+    ports:
+      - "5050:80"
+    networks:
+      - crud-go-network
+    restart: unless-stopped  
+
+networks:
+  crud-go-network:
+    driver: bridge

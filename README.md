@@ -7,6 +7,8 @@ Desafio proposto pela live na qual, houveram estudos da linguagem GO e a impleme
 
 **Install Postman >= [Download](https://www.postman.com/downloads/)**
 
+**Install SQLC >= [Doc](https://docs.sqlc.dev/en/stable/overview/install.html)**
+
 ## Usage
 
 ```SH
