@@ -12,7 +12,7 @@ Desafio proposto pela live na qual, houveram estudos da linguagem GO e a impleme
 ```SH
 go run main.go
 ```
-O webserver vai ser feita na porta **:8888**, por lá pode se fazer as requisições da API.
+O webserver vai ser feita na porta **8888**, por lá pode se fazer as requisições da API.
 
 Recomendado ter o insomnia ou postman em sua máquina.
 
