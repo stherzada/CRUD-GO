@@ -9,6 +9,10 @@ Desafio proposto pela live na qual, houveram estudos da linguagem GO e a impleme
 
 **Install SQLC >= [Doc](https://docs.sqlc.dev/en/stable/overview/install.html)**
 
+**Install Docker >= [Doc](https://docs.docker.com/get-docker/)**
+
+**Install Docker Compose >= [Doc](https://docs.docker.com/compose/install/)**
+
 ## Usage
 
 Para gerar o codigo Go baseado no codigo SQL usando o SQLC  
